@@ -62,11 +62,11 @@
             font-weight: bolder;
             font-size: 15px;
         }
-        button:focus {
+        /* button:focus {
             background-color: white;
             color: black;
             transition: all 0.3s ease-in;
-        }
+        } */
         button:hover {
             background-color: white;
             color: black;
@@ -88,9 +88,16 @@
             <br>
             <br>
             <div class="button-con">
-                <button class="button">Login</button>
+                <button onclick="notReady()" class="button">Login</button>
             </div>
         </div>
     </div>
+    
+    <script>
+        function notReady(){
+            alert("page is not ready yet!")
+        }
+    </script>
+
 </body>
 </html>
