@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+            body {
+        background-color: rgb(230, 187, 194);
+        color: white;
+        text-shadow: 1px 1px 10px black;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+        .sub-container {
+            border: 2px solid black;
+            padding: 50px;
+            box-shadow: 5px 5px 10px black;
+            background: linear-gradient(45deg, lime, cyan);
+        }
+        input {
+            background-color: #171717;
+            color: white;
+            font-size: 15px;
+            padding: 5px 15px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px black;
+            border: 1px solid transparent;
+        }
+        input:focus {
+            background-color: white;
+            color: black;
+            transition: all 0.3s ease-in;
+        }
+        input:hover {
+            background-color: white;
+            color: black;
+            transition: all 0.3s ease-in;
+        }
+        p {
+            text-align: center;
+            text-shadow: 1px 1px 10px black;
+            font-family: fantasy;
+            color: rgb(255, 153, 0);
+            font-size: 25px;
+        }
+        .button-con {
+            display: flex;
+            justify-content: center;
+        }
+        button {
+            background-color: #171717;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-family: cursive;
+            font-weight: bolder;
+            font-size: 15px;
+        }
+        button:focus {
+            background-color: white;
+            color: black;
+            transition: all 0.3s ease-in;
+        }
+        button:hover {
+            background-color: white;
+            color: black;
+            transition: all 0.3s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login not ready yet</h1>
+    <div class="container">
+        <div class="sub-container">
+            <label for="email"><p>Email:</p>
+                <input type="text" id="email">
+            </label>
+            <br>
+            <label for="password"><p>Password:</p>
+                <input type="text" id="password">
+            </label>
+            <br>
+            <br>
+            <div class="button-con">
+                <button class="button">Login</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
