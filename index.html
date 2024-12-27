@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <title>Signup Form</title>
     <style>
-        body{
+        body {
             background-color: rgb(230, 187, 194);
             color: white;
             text-shadow: 1px 1px 10px black;
         }
-        .container{
+        .container {
             display: flex;
             justify-content: center;
-            /* border: 1px solid black; */
         }
-        .sub-container{
+        .sub-container {
             border: 2px solid black;
             padding: 50px;
             box-shadow: 5px 5px 10px black;
-            background: linear-gradient(45deg , lime , cyan);
+            background: linear-gradient(45deg, lime, cyan);
         }
-        h1{
+        h1 {
             text-align: center;
         }
-        input{
+        input {
             background-color: #171717;
             color: white;
             font-size: 15px;
@@ -38,24 +37,23 @@
             color: black;
             transition: all 0.3s ease-in;
         }
-        input:hover{
+        input:hover {
             background-color: white;
             color: black;
             transition: all 0.3s ease-in;
         }
-        p{
+        p {
             text-align: center;
             text-shadow: 1px 1px 10px black;
-            /* font-weight: bolder; */
             font-family: fantasy;
             color: rgb(255, 153, 0);
             font-size: 25px;
         }
-        .button-con{
+        .button-con {
             display: flex;
             justify-content: center;
         }
-        button{
+        button {
             background-color: #171717;
             color: white;
             padding: 10px 15px;
@@ -69,90 +67,74 @@
             color: black;
             transition: all 0.3s ease-in;
         }
-        button:hover{
+        button:hover {
             background-color: white;
             color: black;
             transition: all 0.3s ease-in;
         }
+        #message{
+            text-align: center;
+            color: black;
+            transition: all 0.4s ease-in-out;
+            font-size: 25px;
+            font-weight: bolder;
+        }
     </style>
 </head>
 <body>
-    <h1>Signup To Our Web</h1>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <h1>Signup Form</h1>
     <div class="container">
         <div class="sub-container">
-            <label for="Username"><p>Username</p>
-                <input type="text" id="userName" placeholder="Enter Your Username" required>
-            </label>
-            <br>
-            <label for="Email"><p>Email</p>
-                <input type="text" id="userEmail" placeholder="Enter Your Email" required>
-            </label>
-            <br>
-            <label for="Password"><p>Password</p>
-                <input type="text" id="userPassword" placeholder="Enter Your Password" required>
-            </label>
-            <br>
-            <br>
-            <br>
-            <div class="button-con"> 
-                <button>Signup</button>
-            </div>
+            <form id="signupForm">
+                <label for="username"><p>Username:</p></label>
+                <input type="text" id="username" required><br><br>
+                
+                <label for="email"><p>Email:</p></label>
+                <input type="email" id="email" required><br><br>
+                
+                <label for="password"><p>Password:</p></label>
+                <input type="text" id="password" required><br><br>
+                
+                <div class="button-con">
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
         </div>
     </div>
+    <br>
+    <br>
+    <div id="message"></div>
 
     <script>
-        function signup(){
-            let userName = document.getElementById("userName").value;
-            let userEmail = document.getElementById("userEmail").value;
-            let userPassword = document.getElementById("userPassword").value;
+        function handleSignup(e) {
+            e.preventDefault();
 
-            let userArr = JSON.parse(localStorage.getItem("users"))
+            let username = document.getElementById('username').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let password = document.getElementById('password').value.trim();
 
-            let userDetail = {
-                name: userName,
-                email: userEmail,
-                password: userPassword
+            if (!username || !email || !password) {
+                document.getElementById('message').textContent = "Please fill out all fields.";
+                return;
             }
 
-            if(userArr){
-                for(let i = 0; i <  userArr.length; i++){
-                    if(userEmail == userArr [i].email){
-                        alert("Email Already exist's")
-                        return;
-                    }
-                }
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            let emailExists = users.some(user => user.email === email);
+            if (emailExists) {
+                document.getElementById('message').textContent = "Email is already registered.";
+                return;
             }
 
-            if(userArr){
-                for(let i = 0; i <  userArr.length; i++){
-                    if(userName == userArr [i].name){
-                        alert("Username Already exist's")
-                        return;
-                    }
-                }
-                userArr.push(userDetail)
-            }else{
-                userArr=[userDetail]
-                alert("you signed in successfully")
-            }
+            users.push({ username, email, password });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            
+            document.getElementById('signupForm').reset();
+            document.getElementById('message').textContent = "Signup successful!";
         }
-        localStorage.setItem("users" ,JSON.stringify(userArr));
 
+        document.getElementById('signupForm').addEventListener('submit', handleSignup);
     </script>
 </body>
 </html>
